@@ -1,1 +1,46 @@
+ion-content {
+  --ion-background-color: #855aff;
+}
 
+ion-button {
+  --background: #ff2b54;
+}
+
+ion-input {
+  --placeholder-color: white;
+}
+
+.title {
+  position: absolute;
+  margin: auto;
+  right: 0;
+  left: 0;
+  top: 50px;
+  bottom: 0;
+  text-align: center;
+  font-size: 50px;
+  color: white;
+}
+
+.input-btn {
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0px;
+  width: 90%;
+  height: 36px;
+  text-align: left;
+}
+
+.start-btn {
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 100px;
+  bottom: 0;
+  width: 90%;
+  height: 36px;
+}

@@ -1,5 +1,7 @@
 {
   "name": "SpotMi",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
