@@ -6,6 +6,9 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'start/:name', loadChildren: './start/start.module#StartPageModule' },
   { path: 'restaurants', loadChildren: './restaurants/restaurants.module#RestaurantsPageModule' },
+  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
+  { path: 'popover', loadChildren: './popover/popover.module#PopoverPageModule' },
+  { path: 'showmore', loadChildren: './showmore/showmore.module#ShowmorePageModule' },
 ];
 
 @NgModule({

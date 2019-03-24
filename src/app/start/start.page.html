@@ -1,5 +1,38 @@
-<ion-content padding>
-    <p style="font-size: 30px; color: #383c40">What can we help you find?  {{name}}</p>
+<ion-header [class.hide-header]="hideHeader">
+
+    <ion-toolbar [class.hide-header]="hideHeader">
+        <ion-searchbar
+                placeholder="Search Places"
+                animated
+                (ionChange)="searchPlace($event)"
+                autocomplete="on"
+                showCancelButton
+                (ionFocus)="clickedSearch()"
+                (ionBlur)="hasCancelledSearch()">
+
+        </ion-searchbar>
+    </ion-toolbar>
+
+    <ion-card class="unhide-card" [class.hide-card]="hideDistricts">
+        <ion-list>
+            <ion-item *ngFor="let district of districts | filter: searching" (click)="setLocation(district.title)">
+                {{district.title}}
+            </ion-item>
+        </ion-list>
+    </ion-card>
+
+</ion-header>
+
+<ion-content
+        padding
+        [fullscreen]="true"
+        [scrollEvents]="true"
+        (ionScroll)="onScroll($event)"
+        (ionScrollEnd)="endScroll()">
+
+    <h2 style="text-align: center; margin-top: 5px; color: rgba(56,60,64,0.63)">{{location}}</h2>
+
+    <h2 style="color: #383c40; margin-top: 5px">What can we help you find?  {{name}}</h2>
 
     <ion-slides [options]="slideOpts">
 
@@ -7,7 +40,7 @@
 
             <ion-card class="slider-card">
                 <ion-card-header>
-                    <img src="assets/food.jpg" style="width: 100px; height: 80px">
+                    <img src="assets/food.jpg">
                 </ion-card-header>
                 <ion-card-content>
                     <h2 style="color: #5f676a">Restaurants</h2>
@@ -20,7 +53,7 @@
 
             <ion-card class="slider-card">
                 <ion-card-header>
-                    <img src="assets/hotel.jpg" style="width: 100px; height: 80px">
+                    <img src="assets/hotel.jpg">
                 </ion-card-header>
                 <ion-card-content>
                     <h2 style="color: #5f676a">Hotels</h2>
@@ -33,7 +66,7 @@
 
             <ion-card class="slider-card">
                 <ion-card-header>
-                    <img src="assets/jeep.jpg" style="width: 100px; height: 80px">
+                    <img src="assets/jeep.jpg">
                 </ion-card-header>
                 <ion-card-content>
                     <h2 style="color: #5f676a">Experiences</h2>
@@ -44,77 +77,79 @@
 
     </ion-slides>
 
-    <h2>Restaurants</h2>
+    <h2 style="color: #383c40; margin-bottom: 18px">Restaurants</h2>
 
-    <ion-grid no-padding>
-        <ion-row>
-            <ion-col size="4">
+    <ion-list>
 
-                <ion-card class="card">
-                    <ion-card-header>
-                        <img src="assets/food.jpg" style="height: 50px">
-                    </ion-card-header>
-                    <ion-card-content>
-                        <h3 style="color: #5f676a">Restaurants</h3>
-                    </ion-card-content>
-                </ion-card>
+        <ion-card class="cont-card">
+            <img src="assets/food.jpg">
+            <h4>ksdksjdjddddddddddddds</h4>
+            <p no-margin>ksdksjdjkskdjksd</p>
+        </ion-card>
+        <ion-card class="cont-card">
+            <img src="assets/food.jpg">
+            <h4>ksdksjdjddddddddddddds</h4>
+            <p no-margin>ksdksjdjkskdjksd</p>
+        </ion-card>
+        <ion-card class="cont-card">
+            <img src="assets/food.jpg">
+            <h4>ksdksjdjddddddddddddds</h4>
+            <p no-margin>ksdksjdjkskdjksd</p>
+        </ion-card>
+    </ion-list>
 
-                <ion-card class="card">
-                    <ion-card-header>
-                        <img src="assets/food.jpg" style="height: 50px">
-                    </ion-card-header>
-                    <ion-card-content>
-                        <h3 style="color: #5f676a">Restaurants</h3>
-                    </ion-card-content>
-                </ion-card>
+    <ion-button expand="block" fill="outline">
+        Show More
+    </ion-button>
 
-            </ion-col>
+    <h2 style="color: #383c40; margin-bottom: 18px">Hotels</h2>
 
-            <ion-col size="4">
+    <ion-list>
 
-                <ion-card class="card">
-                    <ion-card-header>
-                        <img src="assets/food.jpg" style="height: 50px">
-                    </ion-card-header>
-                    <ion-card-content>
-                        <h3 style="color: #5f676a">Restaurants</h3>
-                    </ion-card-content>
-                </ion-card>
+        <ion-card class="cont-card">
+            <img src="assets/food.jpg">
+            <h4>ksdksjdjddddddddddddds</h4>
+            <p no-margin>ksdksjdjkskdjksd</p>
+        </ion-card>
+        <ion-card class="cont-card">
+            <img src="assets/food.jpg">
+            <h4>ksdksjdjddddddddddddds</h4>
+            <p no-margin>ksdksjdjkskdjksd</p>
+        </ion-card>
+        <ion-card class="cont-card">
+            <img src="assets/food.jpg">
+            <h4>ksdksjdjddddddddddddds</h4>
+            <p no-margin>ksdksjdjkskdjksd</p>
+        </ion-card>
+    </ion-list>
 
-                <ion-card class="card">
-                    <ion-card-header>
-                        <img src="assets/food.jpg" style="height: 50px">
-                    </ion-card-header>
-                    <ion-card-content>
-                        <h3 style="color: #5f676a">Restaurants</h3>
-                    </ion-card-content>
-                </ion-card>
+    <ion-button expand="block" fill="outline">
+        Show More
+    </ion-button>
 
-            </ion-col>
+    <h2 style="color: #383c40; margin-bottom: 18px">Experience</h2>
 
-            <ion-col size="4">
+    <ion-list>
 
-                <ion-card class="card">
-                    <ion-card-header>
-                        <img src="assets/food.jpg" style="height: 50px">
-                    </ion-card-header>
-                    <ion-card-content>
-                        <h3 style="color: #5f676a">Restaurants</h3>
-                    </ion-card-content>
-                </ion-card>
+        <ion-card class="cont-card">
+            <img src="assets/food.jpg">
+            <h4>ksdksjdjddddddddddddds</h4>
+            <p no-margin>ksdksjdjkskdjksd</p>
+        </ion-card>
+        <ion-card class="cont-card">
+            <img src="assets/food.jpg">
+            <h4>ksdksjdjddddddddddddds</h4>
+            <p no-margin>ksdksjdjkskdjksd</p>
+        </ion-card>
+        <ion-card class="cont-card">
+            <img src="assets/food.jpg">
+            <h4>ksdksjdjddddddddddddds</h4>
+            <p no-margin>ksdksjdjkskdjksd</p>
+        </ion-card>
+    </ion-list>
 
-                <ion-card class="card">
-                    <ion-card-header>
-                        <img src="assets/food.jpg" style="height: 50px">
-                    </ion-card-header>
-                    <ion-card-content>
-                        <h3 style="color: #5f676a">Restaurants</h3>
-                    </ion-card-content>
-                </ion-card>
+    <ion-button expand="block" fill="outline">
+        Show More
+    </ion-button>
 
-            </ion-col>
-
-        </ion-row>
-
-    </ion-grid>
 </ion-content>
