@@ -15,7 +15,7 @@
 
     <ion-card class="unhide-card" [class.hide-card]="hideDistricts">
         <ion-list>
-            <ion-item *ngFor="let district of districts | filter: searching" (click)="setLocation(district.title)">
+            <ion-item *ngFor="let district of districts | filter: searching" (click)="setLocation(district.title); getId()">
                 {{district.title}}
             </ion-item>
         </ion-list>
@@ -77,24 +77,16 @@
 
     </ion-slides>
 
+    <!--restaurants-->
     <h2 style="color: #383c40; margin-bottom: 18px">Restaurants</h2>
 
     <ion-list>
 
-        <ion-card class="cont-card">
+        <ion-card class="cont-card" *ngFor="let r of restaurants | slice:0:3">
             <img src="assets/food.jpg">
-            <h4>ksdksjdjddddddddddddds</h4>
-            <p no-margin>ksdksjdjkskdjksd</p>
-        </ion-card>
-        <ion-card class="cont-card">
-            <img src="assets/food.jpg">
-            <h4>ksdksjdjddddddddddddds</h4>
-            <p no-margin>ksdksjdjkskdjksd</p>
-        </ion-card>
-        <ion-card class="cont-card">
-            <img src="assets/food.jpg">
-            <h4>ksdksjdjddddddddddddds</h4>
-            <p no-margin>ksdksjdjkskdjksd</p>
+            <h4>{{r.name}}</h4>
+            <p style="color: #0a7d38">opens: {{r.open}}</p>
+            <p style="color: #ac2d29"> closed: {{r.closed}}</p>
         </ion-card>
     </ion-list>
 
@@ -102,6 +94,7 @@
         Show More
     </ion-button>
 
+    <!--hotels-->
     <h2 style="color: #383c40; margin-bottom: 18px">Hotels</h2>
 
     <ion-list>
@@ -127,6 +120,7 @@
         Show More
     </ion-button>
 
+    <!--experiences-->
     <h2 style="color: #383c40; margin-bottom: 18px">Experience</h2>
 
     <ion-list>

@@ -9,7 +9,7 @@ import {PopoverPage} from '../popover/popover.page';
 
 import {debounceTime} from 'rxjs/operators';
 import {DistrictsService} from '../services/districts.service';
-import {DistrictsModel} from '../models/districts.model';
+import {DistrictsModel, layoutModel, RestaurantsModel} from '../models/districts.model';
 
 @Component({
     selector: 'app-start',
@@ -25,7 +25,7 @@ export class StartPage implements OnInit {
     };
 
     name: string;
-    location: string;
+    location = 'Ambergris Caye';
 
     scrollDtl = 0;
     hideHeader = false;
@@ -34,6 +34,9 @@ export class StartPage implements OnInit {
     districts: DistrictsModel[] = [];
     searching = '';
     hideDistricts = true;
+    restaurantService: RestaurantsModel[] = [];
+    restaurants: layoutModel[] = [];
+
 
     constructor(
         private route: ActivatedRoute,
@@ -43,12 +46,19 @@ export class StartPage implements OnInit {
 
         this.districtService.getDistricts()
             .subscribe(resp => this.districts = resp);
+        this.districtService.getRestaurants()
+            .subscribe(resp => {
+                this.restaurantService = resp;
+                console.log(this.restaurantService['Ambergris Caye'][0]);
+            });
     }
 
 
     ngOnInit() {
         this.name = this.route.snapshot.paramMap.get('name');
         this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1);
+        this.restaurants = this.restaurantService['Ambergris Caye'];
+        this.getId();
     }
 
     // detects scrolling
@@ -91,22 +101,27 @@ export class StartPage implements OnInit {
         this.location = location;
     }
 
-    // async presentModal() {
-    //     const modal = await this.modalController.create({
-    //         component: ModalPage,
-    //         componentProps: {value: 123}
-    //     });
-    //     return await modal.present();
-    // }
-    //
-    // async presentPopover(ev: any) {
-    //     const popover = await this.popoverController.create({
-    //         component: PopoverPage,
-    //         event: ev,
-    //         translucent: true,
-    //         animated: true,
-    //         showBackdrop: false,
-    //     });
-    //     return await popover.present();
-    // }
+    getId() {
+        this.restaurants = this.restaurantService[this.location];
+        console.log(this.restaurants);
+    }
+
+    async presentModal() {
+        const modal = await this.modalController.create({
+            component: ModalPage,
+            componentProps: {value: 123}
+        });
+        return await modal.present();
+    }
+
+    async presentPopover(ev: any) {
+        const popover = await this.popoverController.create({
+            component: PopoverPage,
+            event: ev,
+            translucent: true,
+            animated: true,
+            showBackdrop: false,
+        });
+        return await popover.present();
+    }
 }
