@@ -45,24 +45,26 @@ ion-header {
   box-shadow: 0 3px 30px rgba(0, 0, 0, .2);
 }
 
-/* slider card images */
+/* slider number 2 */
+.slider2 {
+  --bullet-background: rgba(0, 0, 0, 0.8);
+  --bullet-background-active: rgba(19, 39, 255, 0.8);
+}
+
 .slider-card img {
   width: 100px;
   height: 80px;
 }
 
-/* cards in content */
-
-.cont-card h4 {
-  margin-top: 5px;
+.slider-card2 {
+  box-shadow: 0 3px 1px rgba(0, 0, 0, .1);
 }
 
-.cont-card img {
-  width: 150px;
-  height: 86px;
-  float: left;
-  padding: 0 20px 0 0;
+.slider-card2 ion-card-header {
+  padding: 0 0 10px
+;
 }
-.cont-card p {
+.slider-card2 p {
   margin: 0;
+  text-align: left;
 }

@@ -3,6 +3,7 @@
     <ion-toolbar [class.hide-header]="hideHeader">
         <ion-searchbar
                 placeholder="Search Places"
+                value="{{location}}"
                 animated
                 (ionChange)="searchPlace($event)"
                 autocomplete="on"
@@ -14,11 +15,13 @@
     </ion-toolbar>
 
     <ion-card class="unhide-card" [class.hide-card]="hideDistricts">
-        <ion-list>
-            <ion-item *ngFor="let district of districts | filter: searching" (click)="setLocation(district.title); getId()">
-                {{district.title}}
-            </ion-item>
-        </ion-list>
+        <ion-card-content>
+            <ion-list>
+                <ion-item *ngFor="let district of districts | filter: searching" (click)="setLocation(district.title)">
+                    {{district.title}}
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
     </ion-card>
 
 </ion-header>
@@ -30,9 +33,9 @@
         (ionScroll)="onScroll($event)"
         (ionScrollEnd)="endScroll()">
 
-    <h2 style="text-align: center; margin-top: 5px; color: rgba(56,60,64,0.63)">{{location}}</h2>
+    <h2>{{location}}</h2>
 
-    <h2 style="color: #383c40; margin-top: 5px">What can we help you find?  {{name}}</h2>
+    <h2 style="color: #383c40; margin-top: 5px">What can we help you find?  {{Username}}</h2>
 
     <ion-slides [options]="slideOpts">
 
@@ -80,70 +83,58 @@
     <!--restaurants-->
     <h2 style="color: #383c40; margin-bottom: 18px">Restaurants</h2>
 
-    <ion-list>
+    <ion-slides [options]="slide2Opts" class="slider2" pager="true">
 
-        <ion-card class="cont-card" *ngFor="let r of restaurants | slice:0:3">
-            <img src="assets/food.jpg">
-            <h4>{{r.name}}</h4>
-            <p style="color: #0a7d38">opens: {{r.open}}</p>
-            <p style="color: #ac2d29"> closed: {{r.closed}}</p>
-        </ion-card>
-    </ion-list>
+        <ion-slide>
+            <ion-card class="slider-card2">
+                <ion-card-header>
+                    <ion-img src="assets/food.jpg"></ion-img>
+                    <ion-card-title>Place Name</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-icon name="restaurant" float-end size="large"></ion-icon>
+                    <p>opens: 8am</p>
+                    <p>closes: 9pm</p>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
 
-    <ion-button expand="block" fill="outline">
-        Show More
-    </ion-button>
+        <ion-slide>
+            <ion-card class="slider-card2">
+                <ion-card-header>
+                    <ion-img src="assets/food.jpg"></ion-img>
+                    <ion-card-title>Place Name</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-icon name="restaurant" float-end size="large"></ion-icon>
+                    <p>opens: 8am</p>
+                    <p>closes: 9pm</p>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+
+        <ion-slide>
+            <ion-card class="slider-card2">
+                <ion-card-header>
+                    <ion-img src="assets/food.jpg"></ion-img>
+                    <ion-card-title>Place Name</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-icon name="restaurant" float-end size="large"></ion-icon>
+                    <p>opens: 8am</p>
+                    <p>closes: 9pm</p>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+
+    </ion-slides>
+
+    <ion-button expand="block" fill="outline" href="restaurants/belize">Show More</ion-button>
 
     <!--hotels-->
     <h2 style="color: #383c40; margin-bottom: 18px">Hotels</h2>
 
-    <ion-list>
-
-        <ion-card class="cont-card">
-            <img src="assets/food.jpg">
-            <h4>ksdksjdjddddddddddddds</h4>
-            <p no-margin>ksdksjdjkskdjksd</p>
-        </ion-card>
-        <ion-card class="cont-card">
-            <img src="assets/food.jpg">
-            <h4>ksdksjdjddddddddddddds</h4>
-            <p no-margin>ksdksjdjkskdjksd</p>
-        </ion-card>
-        <ion-card class="cont-card">
-            <img src="assets/food.jpg">
-            <h4>ksdksjdjddddddddddddds</h4>
-            <p no-margin>ksdksjdjkskdjksd</p>
-        </ion-card>
-    </ion-list>
-
-    <ion-button expand="block" fill="outline">
-        Show More
-    </ion-button>
-
     <!--experiences-->
     <h2 style="color: #383c40; margin-bottom: 18px">Experience</h2>
-
-    <ion-list>
-
-        <ion-card class="cont-card">
-            <img src="assets/food.jpg">
-            <h4>ksdksjdjddddddddddddds</h4>
-            <p no-margin>ksdksjdjkskdjksd</p>
-        </ion-card>
-        <ion-card class="cont-card">
-            <img src="assets/food.jpg">
-            <h4>ksdksjdjddddddddddddds</h4>
-            <p no-margin>ksdksjdjkskdjksd</p>
-        </ion-card>
-        <ion-card class="cont-card">
-            <img src="assets/food.jpg">
-            <h4>ksdksjdjddddddddddddds</h4>
-            <p no-margin>ksdksjdjkskdjksd</p>
-        </ion-card>
-    </ion-list>
-
-    <ion-button expand="block" fill="outline">
-        Show More
-    </ion-button>
 
 </ion-content>

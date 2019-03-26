@@ -9,7 +9,7 @@ import {PopoverPage} from '../popover/popover.page';
 
 import {debounceTime} from 'rxjs/operators';
 import {DistrictsService} from '../services/districts.service';
-import {DistrictsModel, layoutModel, RestaurantsModel} from '../models/districts.model';
+import {DistrictsModel} from '../models/districts.model';
 
 @Component({
     selector: 'app-start',
@@ -24,8 +24,14 @@ export class StartPage implements OnInit {
         slidesPerView: 2,
     };
 
-    name: string;
-    location = 'Ambergris Caye';
+    slide2Opts = {
+        effect: 'fade',
+        centeredSlides: true,
+        slidesPerView: 1.3,
+    };
+
+    Username: string;
+    location: string;
 
     scrollDtl = 0;
     hideHeader = false;
@@ -34,8 +40,6 @@ export class StartPage implements OnInit {
     districts: DistrictsModel[] = [];
     searching = '';
     hideDistricts = true;
-    restaurantService: RestaurantsModel[] = [];
-    restaurants: layoutModel[] = [];
 
 
     constructor(
@@ -46,19 +50,13 @@ export class StartPage implements OnInit {
 
         this.districtService.getDistricts()
             .subscribe(resp => this.districts = resp);
-        this.districtService.getRestaurants()
-            .subscribe(resp => {
-                this.restaurantService = resp;
-                console.log(this.restaurantService['Ambergris Caye'][0]);
-            });
     }
 
 
     ngOnInit() {
-        this.name = this.route.snapshot.paramMap.get('name');
-        this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1);
-        this.restaurants = this.restaurantService['Ambergris Caye'];
-        this.getId();
+        this.Username = this.route.snapshot.paramMap.get('name');
+        this.Username = this.Username.toLowerCase();
+        this.Username = this.Username.charAt(0).toUpperCase() + this.Username.slice(1);
     }
 
     // detects scrolling
@@ -101,10 +99,6 @@ export class StartPage implements OnInit {
         this.location = location;
     }
 
-    getId() {
-        this.restaurants = this.restaurantService[this.location];
-        console.log(this.restaurants);
-    }
 
     async presentModal() {
         const modal = await this.modalController.create({
