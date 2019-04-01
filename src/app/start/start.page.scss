@@ -1,3 +1,5 @@
+
+
 /* Remove bottom border on md */
 .header-md::after {
   background-image: none;
@@ -12,21 +14,8 @@ ion-toolbar {
   --background: transparent;
   --ion-color-base: transparent !important;
   top: 0;
-  transition: top 0.5s;
-  -webkit-transition: top 0.5s;
-  transition-timing-function: ease-in-out;
 }
 
-ion-header {
-  top: 0;
-  transition: top 0.5s;
-  -webkit-transition: top 0.5s;
-  transition-timing-function: ease-in-out;
-}
-
-.hide-header {
-  top: -30px;
-}
 /* un-hides card in the header */
 .unhide-card {
   --background: white;
@@ -56,15 +45,45 @@ ion-header {
   height: 80px;
 }
 
-.slider-card2 {
-  box-shadow: 0 3px 1px rgba(0, 0, 0, .1);
+//.item-card {
+//  box-shadow: 0 3px 30px rgba(0, 0, 0, .2);
+//}
+.item-card {
+  text-align: left;
+}
+.item-card img{
+  height: 150px;
+  filter: blur(0.3px)
 }
 
-.slider-card2 ion-card-header {
-  padding: 0 0 10px
-;
+.card-title {
+  position: absolute;
+  top: 45%;
+  left: 3px;
+  font-size: 17px;
+  width: 100%;
+  font-weight: bold;
+  color: #f9f9f9;
 }
-.slider-card2 p {
+.card-title span {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.card-subtitle {
+  position: absolute;
+  //top: 75%;
+  bottom: 10px;
+  left: 5px;
+  font-size: 12px;
+  width: 100%;
+  font-weight: bold;
+  color: #fff;
+}
+
+.card-subtitle p {
   margin: 0;
-  text-align: left;
+}
+
+.card-subtitle span {
+  background-color: rgba(30, 32, 35, 0.2);
 }

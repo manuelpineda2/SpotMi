@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>hotels</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="start/{{location}}"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor="let x of hotels">
+    <ion-card-header>
+      <h2 style="margin-bottom: 0">{{x.name}}</h2>
+      <div>
+        <ion-button fill="clear" (click)="call()"><ion-icon name="call"></ion-icon></ion-button>
+        <ion-button fill="clear"><ion-icon name="pin"></ion-icon></ion-button>
+        <ion-button fill="clear" (click)="shareFacebook(x.name, x.img)"><ion-icon name="logo-facebook"></ion-icon></ion-button>
+        <ion-button fill="clear" (click)="shareWhatsApp(x.name, x.img)"><ion-icon name="logo-whatsapp"></ion-icon></ion-button>
+      </div>
+      <h4 style="margin-top: 0">
+        {{x.directions}}
+      </h4>
+    </ion-card-header>
+    <ion-card-content>
+      <img src="assets/{{x.img}}">
+      <h2></h2>
+      <h2></h2>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

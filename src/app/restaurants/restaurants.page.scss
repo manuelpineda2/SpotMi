@@ -1,0 +1,31 @@
+ion-content {
+  --ion-background-color: #fafafa;
+}
+
+.card-btns ion-button {
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  --border-radius: 50%;
+}
+
+.card {
+  --background: white;
+}
+
+.card ion-card-header {
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.card ion-card-header img {
+  height: 200px;
+}
+
+.hour-span {
+  font-size: 17px;
+  margin: 5px 10px 5px 0;
+  background-color: rgba(0, 0, 0, 0.05);
+}

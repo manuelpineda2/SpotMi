@@ -1,9 +1,29 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>restaurants</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>restaurants</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="start/{{location}}"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+    <ion-card *ngFor="let x of restaurant; let i=index" class="card">
 
+        <ion-card-header>
+            <img src="assets/{{x.img}}">
+            <div style="margin-bottom: 0; color: #2D3660; font-size: 25px">{{x.name}}</div>
+            <h4 style="margin: 0">{{x.description}}</h4>
+            <div style="font-size: 15px">{{x.directions}}</div>
+        </ion-card-header>
+
+        <ion-card-content>
+
+            <div text-center>
+                <span class="hour-span">open: {{x.open}}</span>
+                <span class="hour-span">close: {{x.close}}</span>
+            </div>
+        </ion-card-content>
+
+    </ion-card>
 </ion-content>

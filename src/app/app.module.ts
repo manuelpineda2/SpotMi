@@ -13,6 +13,10 @@ import {AppRoutingModule} from './app-routing.module';
 
 import {ModalPageModule} from './modal/modal.module';
 import {PopoverPageModule} from './popover/popover.module';
+import {CallNumber} from '@ionic-native/call-number/ngx';
+
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 @NgModule({
     declarations: [AppComponent],
@@ -27,6 +31,9 @@ import {PopoverPageModule} from './popover/popover.module';
     providers: [
         StatusBar,
         SplashScreen,
+        CallNumber,
+        SocialSharing,
+        File,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
     bootstrap: [AppComponent]

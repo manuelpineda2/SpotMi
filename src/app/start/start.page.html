@@ -6,10 +6,10 @@
                 value="{{location}}"
                 animated
                 (ionChange)="searchPlace($event)"
-                autocomplete="on"
                 showCancelButton
                 (ionFocus)="clickedSearch()"
-                (ionBlur)="hasCancelledSearch()">
+                (ionBlur)="hasCancelledSearch()"
+                style="margin-top: 3px">
 
         </ion-searchbar>
     </ion-toolbar>
@@ -17,7 +17,8 @@
     <ion-card class="unhide-card" [class.hide-card]="hideDistricts">
         <ion-card-content>
             <ion-list>
-                <ion-item *ngFor="let district of districts | filter: searching" (click)="setLocation(district.title)">
+                <ion-item *ngFor="let district of districts | filter: searching"
+                          (click)="setLocation(district.title); getWeatherReload(); getRestaurants(); getHotels();">
                     {{district.title}}
                 </ion-item>
             </ion-list>
@@ -26,22 +27,22 @@
 
 </ion-header>
 
-<ion-content
-        padding
-        [fullscreen]="true"
-        [scrollEvents]="true"
-        (ionScroll)="onScroll($event)"
-        (ionScrollEnd)="endScroll()">
+<ion-content padding [fullscreen]="true">
 
-    <h2>{{location}}</h2>
+    <ion-card no-margin style="border-radius: 15px">
+        <ion-img src="{{icon}}" float-left style="height: 64px; width: 64px;"></ion-img>
+        <h2 float-left style="margin-left: 10px">{{temp}} &deg;F</h2>
+        <h2 float-end style="margin-right: 10px">{{condition}}</h2>
+    </ion-card>
 
-    <h2 style="color: #383c40; margin-top: 5px">What can we help you find?  {{Username}}</h2>
+
+    <h2 style="color: #383c40; margin-top: 15px">What can we help you find?  {{Username}}</h2>
 
     <ion-slides [options]="slideOpts">
 
         <ion-slide>
 
-            <ion-card class="slider-card">
+            <ion-card class="slider-card" (click)="goToRestaurants()">
                 <ion-card-header>
                     <img src="assets/food.jpg">
                 </ion-card-header>
@@ -54,7 +55,7 @@
 
         <ion-slide>
 
-            <ion-card class="slider-card">
+            <ion-card class="slider-card" (click)="goToHotels()">
                 <ion-card-header>
                     <img src="assets/hotel.jpg">
                 </ion-card-header>
@@ -81,60 +82,75 @@
     </ion-slides>
 
     <!--restaurants-->
-    <h2 style="color: #383c40; margin-bottom: 18px">Restaurants</h2>
+    <div>
+        <h2 style="color: #383c40; margin-bottom: 18px">Restaurants
+            <ion-button fill="clear" float-end (click)="goToRestaurants()"><u>show all</u></ion-button>
+        </h2>
+    </div>
 
-    <ion-slides [options]="slide2Opts" class="slider2" pager="true">
+    <ion-slides [options]="slide2Opts">
 
-        <ion-slide>
-            <ion-card class="slider-card2">
-                <ion-card-header>
-                    <ion-img src="assets/food.jpg"></ion-img>
-                    <ion-card-title>Place Name</ion-card-title>
-                </ion-card-header>
-                <ion-card-content>
-                    <ion-icon name="restaurant" float-end size="large"></ion-icon>
-                    <p>opens: 8am</p>
-                    <p>closes: 9pm</p>
-                </ion-card-content>
+        <ion-slide *ngFor="let r of restaurant | slice:0:3">
+
+            <ion-card class="item-card">
+                <img src="assets/{{r.img}}">
+                <div class="card-title"><span>{{r.name}}</span></div>
+                <div class="card-subtitle">
+                    <p><span>opens: {{r.open}}</span></p>
+                    <p><span>closes: {{r.close}}</span></p>
+                </div>
             </ion-card>
-        </ion-slide>
 
-        <ion-slide>
-            <ion-card class="slider-card2">
-                <ion-card-header>
-                    <ion-img src="assets/food.jpg"></ion-img>
-                    <ion-card-title>Place Name</ion-card-title>
-                </ion-card-header>
-                <ion-card-content>
-                    <ion-icon name="restaurant" float-end size="large"></ion-icon>
-                    <p>opens: 8am</p>
-                    <p>closes: 9pm</p>
-                </ion-card-content>
-            </ion-card>
-        </ion-slide>
-
-        <ion-slide>
-            <ion-card class="slider-card2">
-                <ion-card-header>
-                    <ion-img src="assets/food.jpg"></ion-img>
-                    <ion-card-title>Place Name</ion-card-title>
-                </ion-card-header>
-                <ion-card-content>
-                    <ion-icon name="restaurant" float-end size="large"></ion-icon>
-                    <p>opens: 8am</p>
-                    <p>closes: 9pm</p>
-                </ion-card-content>
-            </ion-card>
         </ion-slide>
 
     </ion-slides>
 
-    <ion-button expand="block" fill="outline" href="restaurants/belize">Show More</ion-button>
-
     <!--hotels-->
-    <h2 style="color: #383c40; margin-bottom: 18px">Hotels</h2>
+    <div>
+        <h2 style="color: #383c40; margin-bottom: 18px">Hotels
+            <ion-button fill="clear" float-end (click)="goToHotels()"><u>show all</u></ion-button>
+        </h2>
+    </div>
+
+    <ion-slides [options]="slide2Opts">
+
+        <ion-slide *ngFor="let h of hotels | slice:0:3">
+
+            <ion-card class="item-card">
+                <img src="assets/{{h.img}}">
+                <div class="card-title"><span>{{h.name}}</span></div>
+                <div class="card-subtitle">
+                    <p><span>$ {{h.price}}</span></p>
+                </div>
+            </ion-card>
+
+        </ion-slide>
+
+    </ion-slides>
 
     <!--experiences-->
-    <h2 style="color: #383c40; margin-bottom: 18px">Experience</h2>
+    <div>
+        <h2 style="color: #383c40; margin-bottom: 18px">Experiences
+            <ion-button fill="clear" float-end><u>show all</u></ion-button>
+        </h2>
+    </div>
+
+    <ion-slides [options]="slide2Opts">
+
+        <ion-slide *ngFor="let r of restaurant | slice:0:3">
+
+            <ion-card class="item-card">
+                <img src="assets/{{r.img}}">
+                <div class="card-title"><span>{{r.name}}</span></div>
+                <div class="card-subtitle">
+                    <p><span>opens: {{r.open}}</span></p>
+                    <p><span>closes: {{r.close}}</span></p>
+                </div>
+            </ion-card>
+
+        </ion-slide>
+
+    </ion-slides>
+
 
 </ion-content>
