@@ -137,14 +137,14 @@
 
     <ion-slides [options]="slide2Opts">
 
-        <ion-slide *ngFor="let r of restaurant | slice:0:3">
+        <ion-slide *ngFor="let exp of experience | slice:0:3">
 
             <ion-card class="item-card">
-                <img src="assets/{{r.img}}">
-                <div class="card-title"><span>{{r.name}}</span></div>
+                <img src="assets/{{exp.img}}">
+                <div class="card-title"><span>{{exp.name}}</span></div>
                 <div class="card-subtitle">
-                    <p><span>opens: {{r.open}}</span></p>
-                    <p><span>closes: {{r.close}}</span></p>
+                    <p><span>opens: {{exp.open}}</span></p>
+                    <p><span>closes: {{exp.close}}</span></p>
                 </div>
             </ion-card>
 

@@ -65,6 +65,17 @@ export class StartPage implements OnInit {
         }
     ];
 
+    experience = [
+        {
+            name: '',
+            discription: '',
+            open: '',
+            close: '',
+            direction: '',
+            img: ''
+        }
+    ];
+
     constructor(
         private route: ActivatedRoute,
         private modalController: ModalController,
@@ -107,23 +118,6 @@ export class StartPage implements OnInit {
             );
     }
 
-    // detects scrolling
-    // onScroll($event: CustomEvent<ScrollDetail>) {
-    //     this.scrollDtl = $event.detail.scrollTop;
-    //     if (this.scrollDtl > 115) {
-    //         this.hideHeader = true;
-    //     } else {
-    //         this.hideHeader = false;
-    //     }
-    //     if (this.scrollDtl < this.scrollEnd) {
-    //         this.hideHeader = false;
-    //     }
-    // }
-
-    // checks when scrolling has ended
-    // endScroll() {
-    //     this.scrollEnd = this.scrollDtl;
-    // }
 
     // gets the text you are typing in the searchbar
     searchPlace(event) {
@@ -608,6 +602,131 @@ export class StartPage implements OnInit {
                         phone: 4222082,
                         price: 110,
                         img: 'hotels/corozal/hot.jpg',
+                    }
+                ];
+                break;
+        }
+    }
+
+    getExperiences() {
+        switch (this.location) {
+            case 'Ambergris Caye':
+                this.experience = [
+                    {
+                        name: '',
+                        discription: '',
+                        open: '',
+                        close: '',
+                        direction: '',
+                        img: ''
+                    }
+                ];
+                break;
+            case 'Caye Caulker':
+                this.experience = [
+                    {
+                        name: '',
+                        discription: '',
+                        open: '',
+                        close: '',
+                        direction: '',
+                        img: ''
+                    }
+                ];
+                break;
+            case 'San Ignacio':
+                this.experience = [
+                    {
+                        name: '',
+                        discription: '',
+                        open: '',
+                        close: '',
+                        direction: '',
+                        img: ''
+                    }
+                ];
+                break;
+            case 'Placencia':
+                this.experience = [
+                    {
+                        name: '',
+                        discription: '',
+                        open: '',
+                        close: '',
+                        direction: '',
+                        img: ''
+                    }
+                ];
+                break;
+            case 'Hopkins':
+                this.experience = [
+                    {
+                        name: '',
+                        discription: '',
+                        open: '',
+                        close: '',
+                        direction: '',
+                        img: ''
+                    }
+                ];
+                break;
+            case 'Belize City':
+                this.experience = [
+                    {
+                        name: '',
+                        discription: '',
+                        open: '',
+                        close: '',
+                        direction: '',
+                        img: ''
+                    }
+                ];
+                break;
+            case 'Glover\'s Reef':
+                this.experience = [
+                    {
+                        name: '',
+                        discription: '',
+                        open: '',
+                        close: '',
+                        direction: '',
+                        img: ''
+                    }
+                ];
+                break;
+            case 'Orange Walk':
+                this.experience = [
+                    {
+                        name: '',
+                        discription: '',
+                        open: '',
+                        close: '',
+                        direction: '',
+                        img: ''
+                    }
+                ];
+                break;
+            case 'Toledo':
+                this.experience = [
+                    {
+                        name: '',
+                        discription: '',
+                        open: '',
+                        close: '',
+                        direction: '',
+                        img: ''
+                    }
+                ];
+                break;
+            case 'Corozal':
+                this.experience = [
+                    {
+                        name: '',
+                        discription: '',
+                        open: '',
+                        close: '',
+                        direction: '',
+                        img: ''
                     }
                 ];
                 break;
